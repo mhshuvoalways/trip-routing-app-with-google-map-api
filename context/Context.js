@@ -7,8 +7,19 @@ export const MyContext = createContext();
 function AppStore({ children }) {
   const [isAuth, setIsAuth] = useState(true);
   const [user, setUser] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const auth = getAuth();
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&libraries=places`;
+    script.async = true;
+    document.head.append(script);
+    script.onload = () => {
+      setIsLoaded(true);
+    };
+  }, []);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -23,7 +34,9 @@ function AppStore({ children }) {
   }, [auth]);
 
   return (
-    <MyContext.Provider value={{ user, isAuth }}>{children}</MyContext.Provider>
+    <MyContext.Provider value={{ user, isAuth, isLoaded }}>
+      {children}
+    </MyContext.Provider>
   );
 }
 

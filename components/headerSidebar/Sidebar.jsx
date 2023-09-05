@@ -1,12 +1,16 @@
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
 import { motion } from "framer-motion";
+import { MyContext } from "@/context/Context";
 import FlyerIcon from "../../public/icons/flyer.svg";
 import Vehicle from "../../public/icons/vehicle.svg";
 import Minus from "../../public/icons/minus.svg";
 
 const Sidebar = ({ isOpen, inputs, setInputs }) => {
+  const { isLoaded } = useContext(MyContext);
+
   const inputIncreaseHandler = () => {
     const temp = [...inputs];
     if (temp.every((el) => el.value)) {
@@ -81,13 +85,16 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
               key={el.id}
             >
               <div className="flex justify-between gap-2 items-center flex-wrap sm:flex-nowrap">
-                <ReactGoogleAutocomplete
-                  className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
-                  placeholder="Place"
-                  name="place"
-                  onPlaceSelected={(place) => autoCompleteHandler(place, el.id)}
-                  apiKey="AIzaSyDv0LW8rdzKeKPjPWedHX5RJXV7rz1Ikic"
-                />
+                {isLoaded && (
+                  <ReactGoogleAutocomplete
+                    className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
+                    placeholder="Place"
+                    name="place"
+                    onPlaceSelected={(place) =>
+                      autoCompleteHandler(place, el.id)
+                    }
+                  />
+                )}
                 <input
                   type="text"
                   className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
