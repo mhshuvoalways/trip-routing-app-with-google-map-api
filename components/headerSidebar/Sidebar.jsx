@@ -86,6 +86,7 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
                   placeholder="Place"
                   name="place"
                   onPlaceSelected={(place) => autoCompleteHandler(place, el.id)}
+                  apiKey="AIzaSyDv0LW8rdzKeKPjPWedHX5RJXV7rz1Ikic"
                 />
                 <input
                   type="text"
