@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
+  apiKey: "AIzaSyCFn9Z6I4bnI0hGNzHF5H3V_9hLWGq6-Ic",
+  authDomain: "trip-routing-app.firebaseapp.com",
+  projectId: "trip-routing-app",
+  storageBucket: "trip-routing-app.appspot.com",
+  messagingSenderId: "313249141880",
+  appId: "1:313249141880:web:91f7794c806e49616b498d",
 };
 
 const app = initializeApp(firebaseConfig);

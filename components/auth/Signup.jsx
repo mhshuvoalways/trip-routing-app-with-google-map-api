@@ -25,14 +25,14 @@ const SignUp = () => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, authValus.email, authValus.password)
       .then(() => {
-        setLoading(true);
+        setLoading(false);
         setAuthValues({
           email: "",
           password: "",
         });
       })
       .catch((err) => {
-        setLoading(true);
+        setLoading(false);
         setErrorMsg(err.message.replace(/^Firebase: /, ""));
       });
   };
@@ -60,8 +60,8 @@ const SignUp = () => {
         >{`Already have an account?`}</Link>
       </p>
       <motion.p
-        className={`bg-[#707070] rounded-xl text-gray-100 p-2 cursor-pointer w-full sm:w-6/12 mx-auto mt-5 text-center ${
-          loading && "cursor-not-allowed opacity-50"
+        className={`bg-[#707070] rounded-xl text-gray-100 p-2 w-full sm:w-6/12 mx-auto mt-5 text-center ${
+          loading ? "cursor-not-allowed opacity-50" : "cursor-pointer"
         }`}
         whileTap={{ scale: 0.9 }}
         onClick={onSubmitHandler}
