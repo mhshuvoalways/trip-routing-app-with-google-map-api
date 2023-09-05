@@ -1,23 +1,19 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import HeaderSidebar from "../components/headerSidebar";
+import Login from "@/components/auth/Login";
 import { MyContext } from "../context/Context";
 
-const Index = () => {
+const LoginPage = () => {
   const { isAuth } = useContext(MyContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuth) {
-      router.push("/login");
+    if (isAuth) {
+      router.push("/");
     }
   }, [router, isAuth]);
 
-  return (
-    <div>
-      <HeaderSidebar />
-    </div>
-  );
+  return <Login />;
 };
 
-export default Index;
+export default LoginPage;

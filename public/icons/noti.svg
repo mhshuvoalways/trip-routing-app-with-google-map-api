@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.333" height="28" viewBox="0 0 23.333 28">
+  <g id="Group_2" data-name="Group 2" transform="translate(-1617.037 -29)">
+    <g id="bell">
+      <path id="Path" d="M1640.286,52.617l-2-3.339a9.918,9.918,0,0,1-1.414-5.1V41.25a8.177,8.177,0,0,0-5.833-7.822V31.333a2.333,2.333,0,0,0-4.667,0v2.094a8.177,8.177,0,0,0-5.833,7.822v2.925a9.924,9.924,0,0,1-1.413,5.1l-2,3.339a.584.584,0,0,0,.5.884h22.167a.583.583,0,0,0,.5-.883Z" fill="#fff"/>
+      <path id="Path-2" data-name="Path" d="M1625.029,54.667a4.059,4.059,0,0,0,7.348,0Z" fill="#fff"/>
+    </g>
+    <g id="Oval" transform="translate(1630 31)" fill="#fe7977" stroke="#5630c3" stroke-miterlimit="10" stroke-width="1">
+      <circle cx="5" cy="5" r="5" stroke="none"/>
+      <circle cx="5" cy="5" r="4.5" fill="none"/>
+    </g>
+  </g>
+</svg>
