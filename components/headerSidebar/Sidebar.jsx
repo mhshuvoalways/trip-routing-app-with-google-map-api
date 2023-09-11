@@ -10,9 +10,6 @@ import dynamic from "next/dynamic";
 const SearchPlace = dynamic(() => import("../map/SearchPlace"), {
   ssr: false,
 });
-const AddressFill = dynamic(() => import("../map/AddressFill"), {
-  ssr: false,
-});
 
 const Sidebar = ({ isOpen, inputs, setInputs }) => {
   const { isLoaded } = useContext(MyContext);
@@ -39,11 +36,12 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
   };
 
   const autoCompleteHandler = (place, id) => {
+    console.log(place);
     const temp = [...inputs];
     const findIndex = temp.findIndex((el) => el.id === id);
     temp[findIndex] = {
       id,
-      value: place.formatted_address,
+      value: place,
     };
     setInputs(temp);
   };
@@ -91,8 +89,19 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
               key={el.id}
             >
               <div className="flex justify-between gap-2 items-center flex-wrap sm:flex-nowrap relative">
-                {isLoaded && <SearchPlace />}
-                <AddressFill />
+                {isLoaded && (
+                  <SearchPlace
+                    autoCompleteHandler={autoCompleteHandler}
+                    itemId={el.id}
+                  />
+                )}
+                <input
+                  type="text"
+                  className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
+                  placeholder="Address"
+                  readOnly
+                  value={el.value}
+                />
               </div>
               <motion.div
                 whileTap={{ scale: 0.9 }}

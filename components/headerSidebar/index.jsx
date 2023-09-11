@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import Map from "../map";
+import Map from "../map/Map";
 import Sidebar from "./Sidebar";
 
 const Index = () => {

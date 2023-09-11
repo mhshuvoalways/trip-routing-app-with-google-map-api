@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-directions": "^4.1.1",
     "@mapbox/search-js-react": "^1.0.0-beta.17",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
@@ -17,7 +16,6 @@
     "eslint-config-next": "13.4.19",
     "firebase": "^10.3.1",
     "framer-motion": "^10.16.2",
-    "mapbox-gl": "^2.15.0",
     "next": "13.4.19",
     "postcss": "8.4.29",
     "react": "18.2.0",
