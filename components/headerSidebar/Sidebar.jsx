@@ -1,12 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
-import ReactGoogleAutocomplete from "react-google-autocomplete";
 import { motion } from "framer-motion";
 import { MyContext } from "@/context/Context";
 import FlyerIcon from "../../public/icons/flyer.svg";
 import Vehicle from "../../public/icons/vehicle.svg";
 import Minus from "../../public/icons/minus.svg";
+import dynamic from "next/dynamic";
+const SearchPlace = dynamic(() => import("../map/SearchPlace"), {
+  ssr: false,
+});
+const AddressFill = dynamic(() => import("../map/AddressFill"), {
+  ssr: false,
+});
 
 const Sidebar = ({ isOpen, inputs, setInputs }) => {
   const { isLoaded } = useContext(MyContext);
@@ -84,24 +90,9 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
               className="flex justify-between gap-3 items-center mt-5"
               key={el.id}
             >
-              <div className="flex justify-between gap-2 items-center flex-wrap sm:flex-nowrap">
-                {isLoaded && (
-                  <ReactGoogleAutocomplete
-                    className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
-                    placeholder="Place"
-                    name="place"
-                    onPlaceSelected={(place) =>
-                      autoCompleteHandler(place, el.id)
-                    }
-                  />
-                )}
-                <input
-                  type="text"
-                  className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
-                  placeholder="Address"
-                  readOnly
-                  value={el.value}
-                />
+              <div className="flex justify-between gap-2 items-center flex-wrap sm:flex-nowrap relative">
+                {isLoaded && <SearchPlace />}
+                <AddressFill />
               </div>
               <motion.div
                 whileTap={{ scale: 0.9 }}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import Map from "../map";
 import Sidebar from "./Sidebar";
-import Map from "../map/Map";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -21,7 +21,7 @@ const Index = () => {
       <Header toggleSidebar={toggleSidebar} isOpen={isOpen} />
       <div className="flex">
         <Sidebar isOpen={isOpen} inputs={inputs} setInputs={setInputs} />
-        <Map inputs={inputs}/>
+        <Map inputs={inputs} />
       </div>
     </div>
   );

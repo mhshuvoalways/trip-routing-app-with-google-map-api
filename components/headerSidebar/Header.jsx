@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import MyAccount from "./MyAccount";
 import Noti from "../../public/icons/noti.svg";
@@ -16,7 +17,9 @@ const Index = ({ isOpen, toggleSidebar }) => {
           <button className="text-2xl block sm:hidden" onClick={toggleSidebar}>
             {!isOpen ? "☰" : "✕"}
           </button>
-          <p className="text-xl font-semibold cursor-pointer">Logo</p>
+          <Link href="/" className="text-xl font-semibold">
+            Logo
+          </Link>
           <div className="flex justify-center sm:justify-between items-center flex-wrap gap-6">
             <motion.div whileTap={{ scale: 0.9 }}>
               <Image src={Noti} alt="" className="cursor-pointer" />

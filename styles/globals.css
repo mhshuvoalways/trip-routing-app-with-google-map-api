@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[aria-label="Search"] {
+  background: #eff0f2;
+  color: #747678;
+  height: 40px;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  border-radius: 12px;
+}
+
+input[aria-label="Search"]:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
