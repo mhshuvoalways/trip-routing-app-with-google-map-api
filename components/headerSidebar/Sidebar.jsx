@@ -1,8 +1,6 @@
-import { useContext } from "react";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
-import { MyContext } from "@/context/Context";
 import FlyerIcon from "../../public/icons/flyer.svg";
 import Vehicle from "../../public/icons/vehicle.svg";
 import Minus from "../../public/icons/minus.svg";
@@ -12,14 +10,13 @@ const SearchPlace = dynamic(() => import("../map/SearchPlace"), {
 });
 
 const Sidebar = ({ isOpen, inputs, setInputs }) => {
-  const { isLoaded } = useContext(MyContext);
-
   const inputIncreaseHandler = () => {
     const temp = [...inputs];
     if (temp.every((el) => el.value)) {
       const obj = {
         id: uuidv4(),
         value: "",
+        location: {},
       };
       temp.push(obj);
       setInputs(temp);
@@ -36,12 +33,16 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
   };
 
   const autoCompleteHandler = (place, id) => {
-    console.log(place);
     const temp = [...inputs];
     const findIndex = temp.findIndex((el) => el.id === id);
     temp[findIndex] = {
       id,
-      value: place,
+      value: place.features[0].properties?.name,
+      address: place.features[0].properties?.full_address,
+      location: {
+        lat: place.features[0].properties.coordinates.latitude,
+        lng: place.features[0].properties.coordinates.longitude,
+      },
     };
     setInputs(temp);
   };
@@ -89,18 +90,16 @@ const Sidebar = ({ isOpen, inputs, setInputs }) => {
               key={el.id}
             >
               <div className="flex justify-between gap-2 items-center flex-wrap sm:flex-nowrap relative">
-                {isLoaded && (
-                  <SearchPlace
-                    autoCompleteHandler={autoCompleteHandler}
-                    itemId={el.id}
-                  />
-                )}
+                <SearchPlace
+                  autoCompleteHandler={autoCompleteHandler}
+                  item={el}
+                />
                 <input
                   type="text"
                   className="bg-[#EFF0F2] rounded-xl text-[#747678] p-2 outline-0 focus:ring w-full"
                   placeholder="Address"
                   readOnly
-                  value={el.value}
+                  value={el.address}
                 />
               </div>
               <motion.div

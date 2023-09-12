@@ -9,6 +9,8 @@ const Index = () => {
     {
       id: 1,
       value: "",
+      address: "",
+      location: {},
     },
   ]);
 
